@@ -11,7 +11,7 @@
 - It's not executing any test because it can't find our custom location.
 
 - Watch the file `./test-folder-custom/index.spec.js` has the `.spec`
-extension that the test runner does not recognize.
+  extension that the test runner does not recognize.
 
 - There are 3 simple tests name after the functions we want to test.
 
