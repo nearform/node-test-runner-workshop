@@ -1,0 +1,21 @@
+{
+  "name": "a07-reporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test:spec": "node --test --test-reporter=spec",
+    "test:tap": "node --test --test-reporter=tap",
+    "test:dot": "node --test --test-reporter=dot",
+    "test:junit": "node --test --test-reporter=junit",
+    "test": "node --test --test-reporter=./test/reporter/index.reporter.js",
+    "solution": "node --test --test-reporter=./test/reporter/solution.reporter.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

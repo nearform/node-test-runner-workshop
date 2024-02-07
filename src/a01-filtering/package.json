@@ -1,0 +1,14 @@
+{
+  "name": "a01-filtering",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "solution": "node --test --test-name-pattern=product ./test-folder-custom/*.spec.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

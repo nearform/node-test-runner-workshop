@@ -1,0 +1,14 @@
+{
+  "name": "a10-watch",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "solution": "node --test --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

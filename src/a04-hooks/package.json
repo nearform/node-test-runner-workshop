@@ -1,0 +1,17 @@
+{
+  "name": "a04-hooks",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test ./test/index.test.js",
+    "solution": "node --test ./test/solution.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "a03-parallel-testing",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1",
+    "solution": "node --test --test-concurrency=10"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

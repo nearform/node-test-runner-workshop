@@ -1,0 +1,17 @@
+{
+  "name": "a06-mocks",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --test ./test/index.test.js",
+    "solution": "node --test --test-only ./test/solution.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
