@@ -13,9 +13,38 @@ lineNumbers: false
 
 <Copyright />
 
-## </div>
+</div>
 
-# What’s a test runner?
+---
+
+# What’s a Test Runner?
+
+A test runner is a tool that automates the process of executing tests in the development of software, ensuring that code changes do not break existing functionality.
+
+It allows developers to run tests across different environments and conditions systematically.
+
+Test runners can be part of a larger test **framework or standalone** tools.
+
+---
+
+# Usual features
+
+<div class="dense">
+
+- **Test Discovery:** Automatically detecting and running all test cases within specified directories or files.
+- **Test Organization:** Allowing tests to be grouped, categorized, or tagged for selective execution.
+- **Result Reporting:** Providing detailed reports on test outcomes, including successes, failures, and exceptions.
+- **Integration Support:** Offering compatibility with Continuous Integration (CI) systems for automated testing within development pipelines.
+
+</div>
+
+---
+
+# Poplular examples
+
+Popular examples include `pytest` for Python, `JUnit` for Java, `Mocha` for JavaScript, and `NUnit` for .NET.
+
+Choosing the right test runner depends on the programming language, the complexity of the project, and specific project requirements.
 
 ---
 
@@ -36,6 +65,31 @@ lineNumbers: false
 ---
 
 # Features
+
+---
+
+# Workshop setup
+
+- This workshop will introduce to the Node.js test runner with 11 excercises
+- At each step you're asked to use a different test runner feature
+- The 💡 icon indicates hints
+
+---
+
+# Getting setup
+
+#### Requirements
+
+- Node LTS
+
+#### Setup
+
+<br />
+
+```bash
+git clone https://github.com/nearform/node-test-runner-workshop
+npm ci
+```
 
 ---
 
@@ -162,3 +216,11 @@ lineNumbers: false
 # A10 Solution 💡
 
 ---
+
+# Other useful resources
+
+---
+
+# Thanks For Having Us!
+
+## 👏👏👏
