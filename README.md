@@ -1,8 +1,17 @@
-# test-runner-workshop
+# The Node.js Test Runner Workshop
 
-- run `npm install`.
-- run `cd ./src/a00-example`.
-- run `node --test`.
-- Dont look in the `package.json` unless you want to find the solution.
-- Solution is in `package.json` or `solution.test.js` or both.
-- run `npm run solution`.
+Workshop based on the [Node.js Test Runner](https://nodejs.org/api/test.html)
+
+## Requirements
+
+- Node LTS
+
+## Setup
+
+- `npm ci`
+
+## Slides
+
+Slides contain instructions for the workshop. You can read them at https://nearform.github.io/node-test-runner-workshop, or:
+
+`npm start` will open the slides in the browser
