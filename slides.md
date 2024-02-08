@@ -23,7 +23,7 @@ A test runner is a tool that automates the process of executing tests in the dev
 
 It allows developers to run tests across different environments and conditions systematically.
 
-Test runners can be part of a larger test **framework or standalone** tools.
+Test runners can be part of a larger **test framework** or standalone tools.
 
 ---
 
@@ -95,53 +95,258 @@ npm ci
 
 # A00 A first example
 
+- In this first example we will run a simple test suite
+- The suite is composed of three tests, one for each function: `sum`, `product` and `average`
+
+To run the test, open a new terminal in the `a00-example` directory and run `node --test`
+
 ---
 
 # A01 Filtering
+
+In the context of test runners, **filtering** refers to the ability to select which tests to run based on specific criteria. This can be useful in large codebases where running every test can be time-consuming.
+
+Filtering allows developers to focus on tests that are relevant to the changes they are making, providing faster feedback and more efficient development workflows.
+
+#### Key points:
+
+<div class="dense">
+
+- Selective Testing: Run only a subset of tests to save time and resources.
+- Criteria Based: Tests can be filtered by names, tags, or custom patterns.
+- Efficiency: Helps in focusing on newly introduced or modified tests.
+
+</div>
 
 ---
 
 # A01 The problem
 
+When working with Node.js test runners, you might encounter situations where tests do not run as expected. A common issue arises when tests are placed in a custom directory or when they use a non-standard file extension that the test runner does not recognize by default.
+
+<div class="dense">
+
+- Test functions (`sum`, `average`, `product`) are located in `src/index.js`.
+- Tests are placed in a custom location: `test-folder-custom`.
+- The test runner is unable to find the tests due to the custom location and file extension `.spec.js` which it does not recognize.
+- Running `node --test` does not execute any tests, leading to confusion and inefficiency.
+
+</div>
+
+This scenario highlights the need for a way to specify test locations and patterns to the test runner.
+
+---
+
+# A01 Fixing it 🪄
+
+To address the issue of the test runner not finding tests in a custom location or with a specific file extension, Node.js provides a way to specify test name patterns and custom test directories.
+
+1. Use the `--test-name-pattern` Flag: This flag allows you to specify a pattern for test names you wish to run, enabling the filtering of tests based on their names.
+
+2. Specify the Folder and File Extension: Along with the `--test-name-pattern` flag, you can also specify the folder where your tests are located and the file extension they use. This ensures that the test runner can find and execute the tests correctly.
+
 ---
 
 # A01 Solution 💡
+
+Running this command will correctly run the `index.spec.js` file in the `test-folder-custom` directory
+
+```bash
+node --test --test-name-pattern=product ./test-folder-custom/*.spec.js
+```
 
 ---
 
 # A02 Assertions
 
+Assertions are fundamental to testing in Node.js, serving as the building blocks for **validating code functionality**. They help ensure that your code behaves as expected under various conditions.
+
+<div class="dense">
+
+- Objective: Learn to use Node.js built-in assertions to test sum and sumAsync functions.
+- Context: Functions are located in `src/index.js`, with tests in `./test/index.test.js`.
+- Task: Write tests using the provided assertions, following the guidelines in the comments.
+
+</div>
+Understanding and implementing assertions correctly is key to developing robust tests for your applications.
+
 ---
 
 # A02 The problem
+
+<div class="dense">
+
+- Import Necessary Modules: Begin by importing the assert and test modules, along with the functions to be tested.
+- Write Test Cases: Follow the instructions and use assertions to validate the behavior of the functions
+- Running Tests: Execute your tests using node --test to ensure your code meets the specified conditions.
+- 💡 The assert syntax is similar to the example, you just need to customize it
+</div>
 
 ---
 
 # A02 Solution 💡
 
+```javascript
+test('sum', () => {
+  assert.deepStrictEqual(sum([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
+  assert.ok(typeof sum([1, 2, 3]) === 'number', 'typeof sum return is number')
+  assert.doesNotThrow(() => sum([]), 0, 'empty array is valid')
+  assert.deepStrictEqual(sum([]), 0, 'sum of empty array is 0')
+  assert.throws(
+    () => sum('abc'),
+    { message: 'Input must be an array of numbers' },
+    'throws error for non-array input in sum'
+  )
+})
+```
+
+---
+
+# A02 Solution 💡 (2)
+
+```javascript
+test('sumAsync', async () => {
+  assert.deepStrictEqual(await sumAsync([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
+  assert.ok(
+    typeof (await sumAsync([1, 2, 3])) === 'number',
+    'typeof sum return is number'
+  )
+  await assert.doesNotReject(() => sumAsync([]), 0, 'empty array is valid')
+  assert.deepStrictEqual(await sumAsync([]), 0, 'sum of empty array is 0')
+  await assert.rejects(
+    () => sumAsync('abc'),
+    { message: 'Input must be an array of numbers' },
+    'throws error for non-array input in sumAsync'
+  )
+})
+```
+
+---
+
+# A02 Solution 💡(3)
+
+There are other assertions not covered by this example, for example:
+
+```javascript
+assert.match('PLACEHOLDER', /PLACEHOLDER/)
+assert.doesNotMatch('foo', /PLACEHOLDER/)
+```
+
+Refer to the [official documentation](https://nodejs.org/api/assert.html) for further information
+
 ---
 
 # A03 Parallel testing
+
+<div class="dense">
+
+- Running tests in parallel can drastically reduce the time needed to execute extensive test suites, especially beneficial for long-running tests.
+- Use `node -e "console.log(os.availableParallelism())"` to determine the maximum number of concurrent tasks supported, guiding the optimal setting for `--test-concurrency`.
+- Node.js defaults to `os.availableParallelism() - 1` for parallel test execution, leaving one CPU core free. Increasing `--test-concurrency` can further speed up testing, depending on the workload and system capabilities.
+- Tests involving heavy computations see the most benefit from parallel execution, making efficient use of available hardware resources.
+</div>
 
 ---
 
 # A03 The problem
 
+In this example we have 2 function `heavyComputationSum`, `heavyComputationMultiply` that takes a long time to execute.
+
+Running this snippet we can see a sequential execution in action:
+
+```bash
+node --test --test-concurrency=1
+```
+
+Your goal is to exploit parallel testing to make the execution faster.
+
 ---
 
 # A03 Solution 💡
+
+```bash
+# Determine optimal concurrency
+node -e "console.log(os.availableParallelism())"
+
+# Example parallel execution (faster)
+node --test --test-concurrency=10
+
+```
 
 ---
 
 # A04 Hooks
 
+<div class="dense">
+
+Lifecycle hooks (`before`, `after`, `beforeEach`, `afterEach`) play a crucial role in setting up and tearing down test environments, leading to more organized and efficient test suites.
+
+Proper use of hooks can improve code readability and maintenance by centralizing setup and cleanup logic.
+
+They help in managing resources efficiently, such as database connections and user records, which is crucial for tests that interact with **external systems or databases**.
+
+</div>
+
 ---
 
 # A04 The problem
 
+<div class="dense">
+
+- Consider a test suite with multiple tests that interact with a database and require user setup.
+- Manually handling database connections and user setup/teardown in each test is repetitive and clutters the test code.
+- This approach increases the risk of errors, such as forgetting to release resources, leading to **resource leaks** and **interference** between tests.
+</div>
+
+We want to change the `index.test.js` code to use the proper **lifecycle hooks**
+
 ---
 
 # A04 Solution 💡
+
+```javascript
+let databaseConnection
+let user
+
+before(async () => {
+  databaseConnection = await connectToDatabase()
+})
+
+after(async () => {
+  await closeDatabaseConnection(databaseConnection)
+})
+
+beforeEach(async () => {
+  user = await createUser(databaseConnection, 'testuser', 'password123')
+})
+
+afterEach(async () => {
+  await deleteUser(databaseConnection, user)
+})
+```
+
+---
+
+# A04 Solution 💡 (2)
+
+```javascript
+// No need for database connection here
+
+test('Authentication Module Tests', async () => {
+  await test('should authenticate a valid user', async () => {
+    // No user creation
+    const result = await authenticateUser(
+      databaseConnection,
+      'testuser',
+      'password123'
+    )
+    assert.strictEqual(result, true, 'Authentication should succeed')
+    // No user cleanup
+  })
+})
+
+// No need for explicit database connection cleanup
+```
 
 ---
 
@@ -224,3 +429,10 @@ npm ci
 # Thanks For Having Us!
 
 ## 👏👏👏
+
+````
+
+```
+
+```
+````
