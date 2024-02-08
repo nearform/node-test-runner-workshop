@@ -352,13 +352,50 @@ test('Authentication Module Tests', async () => {
 
 # A05 Keywords
 
+<div class="dense">
+
+- Utilizing special keywords such as only, todo, and skip in test suites can significantly enhance test management and execution efficiency.
+- `only`: Focuses on running a specific test or group of tests, useful for debugging or developing new features.
+- `todo`: Marks tests as planned but not yet implemented, allowing for better test suite planning without breaking the execution.
+- `skip`: Excludes tests from the execution run, useful for temporarily disabling tests without removing the test code.
+</div>
+
 ---
 
 # A05 The problem
 
+<div class="dense">
+
+- During development and testing phases, it's common to encounter scenarios where certain tests need to be prioritized, postponed, or temporarily disabled.
+- Manually commenting out tests or altering test code to adjust the execution can be cumbersome and error-prone.
+- In the `index.test.js` we have 4 tests. Based on the requirements written in the test file, apply the correct keywords yo apply the required behaviour
+</div>
+
 ---
 
 # A05 Solution 💡
+
+```javascript
+// the function product is not ready yet will throw, so we skip
+skip('testing product', () => {
+  assert.strictEqual(product([1, 2, 3]), 6, 'product is not ready yet')
+})
+
+// we want to execute ONLY this specific test
+only('testing sum', () => {
+  assert.strictEqual(sum([1, 2, 27]), 30, 'sum([1, 2, 27]) should equal 30')
+})
+
+// this test is not meaningful, it still wip
+todo('still work in progress', () => {
+  assert.strictEqual(2, 2, 'This testis still a work in progress')
+})
+
+// this runs normally
+test('should run normally', () => {
+  assert.strictEqual(sum([1, 2, 3]), 6, 'sum([1, 2, 3]) should run normally')
+})
+```
 
 ---
 
