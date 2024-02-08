@@ -486,13 +486,32 @@ Run `npm run test` to test your solution
 
 # A08 Typescript
 
+<div class="dense">
+
+- The Node.js test runner brings Typescript compatibility using `tsx` or `ts-node`
+- You can run it only by using the `--import` flag.
+- This feature allows the tests to be written in Typescript and to run them directly
+- The flag allows to preload the specified module at startup. If the flag is provided several times, each module will be executed sequentially in the order they appear, starting with the ones provided in `NODE_OPTIONS`.
+- Warning: This feature is still **Experimental**
+
+</div>
+
 ---
 
 # A08 The problem
 
+- In the `test` folder, there is a `index.test.ts` file
+- Run the test with the test runner using tsx by leveraging the `import` flag
+
 ---
 
 # A08 Solution 💡
+
+```bash
+    node --import=tsx --test ./test/*.ts
+```
+
+You can reference the [`--import` official documentation](https://nodejs.org/api/cli.html#--importmodule) for further information
 
 ---
 
