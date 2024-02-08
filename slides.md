@@ -401,13 +401,55 @@ test('should run normally', () => {
 
 # A06 Mocks
 
+- **Mocking** is a powerful testing technique that involves creating a fake version of a function or module to track its usage and control its behavior during tests.
+- It's particularly useful for isolating test environments, monitoring how functions are used, and testing the interactions between different parts of an application without relying on external resources or complex setups.
+- The `mock` function from `node:test` provides a simple interface to **spy on, stub, or replace the behavior of the target function**.
+
 ---
 
 # A06 The problem
 
+<div class="dense">
+
+- When testing functions that interact with external systems or have side effects, directly invoking them can lead to unpredictable test outcomes and slow test execution.
+- It's challenging to test the behavior of a function in isolation without an efficient way to track its invocations, arguments, and return values.
+
+- Open the file `test/index.test.js`.
+- Use function `mock` from `node:test` to spy on the fuction `sum` invokation.
+</div>
+
+---
+
+# A06 Fixing it 🪄
+
+- Utilize the `mock` function to create a **spy version** of the sum function. This allows you to monitor its calls during the test execution.
+- The mock function provides detailed insights into each invocation, such as the arguments used, the return value, and any errors thrown.
+- This approach enables precise control and observation over function behavior in test scenarios, improving test reliability and insightfulness.
+
 ---
 
 # A06 Solution 💡
+
+```javascript
+afterEach(async () => {
+  mock.reset()
+})
+
+test('spies on a sum', () => {
+  const mockedSum = mock.fn(sum)
+
+  assert.deepStrictEqual(mockedSum.mock.calls.length, 0)
+  assert.deepStrictEqual(mockedSum([3, 4]), 7)
+  assert.deepStrictEqual(mockedSum.mock.calls.length, 1)
+
+  const call = mockedSum.mock.calls[0]
+  assert.deepStrictEqual(call.arguments, [[3, 4]])
+  assert.deepStrictEqual(call.result, 7)
+  assert.deepStrictEqual(call.error, undefined)
+})
+```
+
+Run `npm run test` to test your solution
 
 ---
 
