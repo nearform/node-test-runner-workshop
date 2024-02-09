@@ -89,7 +89,7 @@ Choosing the right test runner involves considering the programming language, pr
 
 # Workshop setup
 
-- This workshop will introduce to the Node.js test runner with some exercises
+- This workshop will introduce to the Node.js test runner with a series of exercises
 - At each step you're asked to use a different test runner feature
 - The 💡 icon indicates hints
 
