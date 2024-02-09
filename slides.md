@@ -539,6 +539,51 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 ---
 
+# A11 Timers
+
+<div class="dense">
+
+- Timers are crucial for testing **time-dependent functionality** in applications, such as debouncing, throttling, or any operation that relies on time delays.
+- Using real timers in tests can lead to unpredictable results and slow down the testing process, as tests have to wait for the actual time to pass.
+- The Node.js test runner offers a way to **mock timers**, enabling tests to simulate the passage of time instantly.
+- Developers can enable mocked versions of timers like `setTimeout` and `setInterval` that can be controlled programmatically.
+
+</div>
+
+---
+
+# A11 The problem
+
+- In the `test` folder, there is a `index.test.ts` file
+- The function to test, contains a `setTimeout`
+- During testing, this can lead to slow and unpredictable tests
+- Apply [timers mocking](https://nodejs.org/api/test.html#timers) in the test file
+
+---
+
+# A11 Solution 💡
+
+```javascript
+test('delayedHello executes the callback after the specified delay', () => {
+  const fn = mock.fn()
+
+  mock.timers.enable({ apis: ['setTimeout'] })
+  delayedHello(fn, 5000)
+
+  // Initially, the callback has not been called
+  assert.strictEqual(fn.mock.calls.length, 0)
+  // Advance time by 5000 milliseconds
+  mock.timers.tick(5000)
+  // Now, the callback should have been called once
+  assert.strictEqual(fn.mock.calls.length, 1)
+  assert.strictEqual(fn.mock.calls[0][0], 'Hello, World!')
+
+  mock.timers.reset()
+})
+```
+
+---
+
 # Other useful resources
 
 ---
@@ -546,10 +591,3 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 # Thanks For Having Us!
 
 ## 👏👏👏
-
-````
-
-```
-
-```
-````
