@@ -14,7 +14,7 @@ test('delayedHello executes the callback after the specified delay', () => {
   mock.timers.tick(5000)
   // Now, the callback should have been called once
   assert.strictEqual(fn.mock.calls.length, 1)
-  assert.strictEqual(fn.mock.calls[0][0], 'Hello, World!')
+  assert.strictEqual(fn.mock.calls[0].arguments[0], 'Hello, World!')
 
   mock.timers.reset()
 })
