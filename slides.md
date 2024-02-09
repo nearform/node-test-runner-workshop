@@ -47,7 +47,7 @@ Test runners can be part of a larger **test framework** or standalone tools.
 - Test runners are tools designed to execute your test suites and report the results. They are essential in automating the testing process.
 - Python: `pytest` is widely appreciated for its powerful features and simple syntax, making it suitable for both simple and complex projects.
 - Java: `JUnit` is the de facto standard for unit testing in Java development, known for its rich annotation-based configuration.
-- JavaScript: `Mocha` is a flexible test framework with a focus on asynchronous testing, offering rich features for running tests in Node.js and the browser.
+- JavaScript: `Jest` is a flexible test framework with a focus on asynchronous testing, offering rich features for running tests in Node.js and the browser.
 - .NET: `NUnit` is a popular choice for .NET developers, similar to JUnit but with a focus on the .NET framework.
 </div>
 
@@ -62,7 +62,7 @@ Choosing the right test runner involves considering the programming language, pr
 - Test Runner: A tool that executes tests and reports the results. It is responsible for loading your test code, running it, and then providing feedback.
 - Testing Framework: Provides the structure and guidelines for writing tests. It includes assertions, test cases, and test suites, but doesn't run tests by itself.
 - The main difference lies in their roles; while a testing framework defines how to write tests, a test runner actually executes them.
-- Some tools, like `pytest` and `Mocha`, combine both functionalities, acting as both test runners and frameworks.
+- Some tools, like `pytest` and `Jest`, combine both functionalities, acting as both test runners and frameworks.
 </div>
 
 ---
