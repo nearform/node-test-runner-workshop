@@ -584,6 +584,75 @@ test('delayedHello executes the callback after the specified delay', () => {
 
 ---
 
+# A12 Context
+
+<div class="dense">
+
+- The `context` object is essential for managing test lifecycles, including setup and teardown processes.
+- It provides hooks (`before`, `beforeEach`, `after`, `afterEach`) for preparing and cleaning up before and after tests or a group of tests.
+- Enables control over test execution through methods like `skip` (to bypass tests), `todo` (to mark tests as pending), and `runOnly` (to execute only specified tests).
+- Offers a `diagnostic` method for logging debug information and a signal property for aborting tests programmatically.
+- Supports **hierarchical test structuring** with the test method, allowing for the creation of subtests that inherit the context of their parent test.
+- Facilitates grouping related tests by using beforeEach and afterEach hooks for shared setup and cleanup, ensuring a well-organized and maintainable test suite.
+
+</div>
+
+---
+
+# A12 The problem
+
+- In this exercise about context, we will focus on child tests (also known as subtests)
+- In the file `index.test.js` you will find multiple tests for the `sum` and the `average` functions
+- Group together all the subtests related to the same function
+
+---
+
+# A12 Solution 💡
+
+```javascript
+// Grouping tests for `sum` function
+test('sum function tests', async t => {
+  await t.test('Sum works correctly with valid input', () => {
+    assert.deepStrictEqual(sum([1, 2, 3]), 6)
+  })
+
+  await t.test('Sum returns 0 in case of empty array', () => {
+    assert.deepStrictEqual(sum([]), 0)
+  })
+
+  await t.test('Sum throws in case of bad input', () => {
+    assert.throws(() => sum('abc'), {
+      message: 'Input must be an array of numbers'
+    })
+  })
+})
+```
+
+---
+
+# A12 Solution 💡 (2)
+
+```javascript
+// Grouping tests for `average` function
+test('average function tests', async t => {
+  await t.test('Average works correctly with valid input', () => {
+    assert.deepStrictEqual(average([1, 2, 3]), 2)
+  })
+
+  await t.test('Average returns 0 in case of empty array', () => {
+    assert.deepStrictEqual(average([]), 0)
+  })
+
+  await t.test('Average throws in case of bad input', () => {
+    assert.throws(() => average('abc'), {
+      message: 'Input must be an array of numbers'
+    })
+  })
+})
+```
+
+---
+
 # Other useful resources
 
 ---
