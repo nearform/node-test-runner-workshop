@@ -593,7 +593,7 @@ test('delayedHello executes the callback after the specified delay', () => {
 - Enables control over test execution through methods like `skip` (to bypass tests), `todo` (to mark tests as pending), and `runOnly` (to execute only specified tests).
 - Offers a `diagnostic` method for logging debug information and a signal property for aborting tests programmatically.
 - Supports **hierarchical test structuring** with the test method, allowing for the creation of subtests that inherit the context of their parent test.
-- Facilitates grouping related tests by using beforeEach and afterEach hooks for shared setup and cleanup, ensuring a well-organized and maintainable test suite.
+- Facilitates grouping related tests by using `beforeEach` and `afterEach` hooks for shared setup and cleanup, ensuring a well-organized and maintainable test suite.
 
 </div>
 
