@@ -554,7 +554,7 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 # A11 The problem
 
-- In the `test` folder, there is a `index.test.ts` file
+- In the `test` folder, there is a `index.test.js` file
 - The function to test, contains a `setTimeout`
 - During testing, this can lead to slow and unpredictable tests
 - Apply [timers mocking](https://nodejs.org/api/test.html#timers) in the test file
