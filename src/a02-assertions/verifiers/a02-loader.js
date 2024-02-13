@@ -9,8 +9,8 @@ async function resolve(url, context, defaultResolve) {
   }
 
   const modulesToPatch = {
-    'node:test': './test.verify.js',
-    'node:assert': './assert.verify.js',
+    'node:test': '../../../verify/test.verify.js',
+    'node:assert': '../../../verify/assert.verify.js',
     '../src/index.js': './index.verify.js'
   }
 

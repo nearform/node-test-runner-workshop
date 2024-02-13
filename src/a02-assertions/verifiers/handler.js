@@ -1,5 +1,5 @@
-import { test } from './test.verify.js'
-import { assertCalls } from './assert.verify.js'
+import { test } from '../../../verify/test.verify.js'
+import { assertCalls } from '../../../verify/assert.verify.js'
 import { sum, sumAsync } from './index.verify.js'
 
 async function main() {
