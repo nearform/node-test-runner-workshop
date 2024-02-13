@@ -1,5 +1,5 @@
 import { test } from './test.verify.js'
-import assert from './assert.verify.js'
+import { assertCalls } from './assert.verify.js'
 import { sum, sumAsync } from './index.verify.js'
 
 async function main() {
@@ -20,10 +20,7 @@ process.on('exit', () => {
       'You need to create a test for both the sum and sumAsync functions'
     )
 
-  console.log(
-    'Assert deepStrictEqual called: ',
-    assert.deepStrictEqual.mock.calls.length
-  )
+  console.log('Assert deepStrictEqual called: ', assertCalls)
 
   if (sum.mock.calls.length < 1)
     throw new Error('You need to call "sum" at least once in your test')
