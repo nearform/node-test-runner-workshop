@@ -2,15 +2,7 @@ import { test } from '../../../verify/test.verify.js'
 import { assertCalls } from '../../../verify/assert.verify.js'
 import { sum, sumAsync } from './index.verify.js'
 
-async function main() {
-  try {
-    await import('../test/index.test.js')
-  } catch (error) {
-    console.error('Error occurred in the test file:', error)
-  }
-}
-
-main()
+await import('../test/index.test.js')
 
 // I'm creating this wrapper in order to be able to spy the process.exit
 process.on('exit', () => {
