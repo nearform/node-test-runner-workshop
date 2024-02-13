@@ -20,7 +20,21 @@ process.on('exit', () => {
       'You need to create a test for both the sum and sumAsync functions'
     )
 
-  console.log('Assert deepStrictEqual called: ', assertCalls)
+  if (
+    typeof assertCalls.find(
+      a => a.testName === 'sum' && a.method === 'deepStrictEqual'
+    ) === 'undefined'
+  )
+    throw new Error('You need to call "deepStrictEqual" inside the "sum" test')
+
+  if (
+    typeof assertCalls.find(
+      a => a.testName === 'sumAsync' && a.method === 'deepStrictEqual'
+    ) === 'undefined'
+  )
+    throw new Error(
+      'You need to call "deepStrictEqual" inside the "sumAsync" test'
+    )
 
   if (sum.mock.calls.length < 1)
     throw new Error('You need to call "sum" at least once in your test')

@@ -1,7 +1,6 @@
 import * as originalAssert from 'node:assert'
+import { getCurrentTestName } from './test.verify.js'
 
-// Since the mock.fn is not working as intended on the proxy
-// For now I'm creating an externa array of calls
 export const assertCalls = []
 
 const assert = new Proxy(originalAssert, {
@@ -12,7 +11,8 @@ const assert = new Proxy(originalAssert, {
       return (...args) => {
         assertCalls.push({
           method: prop,
-          arguments: args
+          arguments: args,
+          testName: getCurrentTestName()
         })
         return originalMethod.apply(target, args)
       }
