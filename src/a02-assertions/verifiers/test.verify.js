@@ -1,7 +1,2 @@
-import { test as originalTest } from 'node:test'
-export const test = (...args) => {
-  console.log('Running new test...')
-  console.log(...args)
-
-  return originalTest(...args)
-}
+import { test as originalTest, mock } from 'node:test'
+export const test = mock.fn(originalTest)

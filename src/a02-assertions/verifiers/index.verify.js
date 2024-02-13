@@ -2,13 +2,7 @@ import {
   sum as originalSum,
   sumAsync as originalSumAsync
 } from '../src/index.js'
+import { mock } from 'node:test'
 
-export function sum(...args) {
-  console.log('Sum called: ', ...args)
-  return originalSum(...args)
-}
-
-export async function sumAsync(...args) {
-  console.log('Sum async called: ', ...args)
-  return originalSumAsync(...args)
-}
+export const sum = mock.fn(originalSum)
+export const sumAsync = mock.fn(originalSumAsync)
