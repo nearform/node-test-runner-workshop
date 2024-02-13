@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "verify": "node  --test --loader=./verifiers/a02-loader.js test/index.test.js"
   },
   "keywords": [],
   "author": "",
