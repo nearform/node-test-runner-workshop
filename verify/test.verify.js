@@ -5,7 +5,10 @@ import {
   beforeEach as originalBeforeEach,
   afterEach as originalAfterEach,
   after as originalAfter,
-  mock
+  mock,
+  only as originalOnly,
+  skip as originalSkip,
+  todo as originalTodo
 } from 'node:test'
 
 const asyncLocalStorage = new AsyncLocalStorage()
@@ -48,3 +51,7 @@ export function getHook() {
   const store = asyncLocalStorage.getStore()
   return store ? store.get('hook') : undefined
 }
+
+export const only = mock.fn(originalOnly)
+export const skip = mock.fn(originalSkip)
+export const todo = mock.fn(originalTodo)
