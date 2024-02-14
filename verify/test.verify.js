@@ -4,42 +4,40 @@ import t from 'node:test'
 const asyncLocalStorage = new AsyncLocalStorage()
 
 export const test = t.mock.fn((...args) => {
-  asyncLocalStorage.run(new Map([['testName', args[0]]]), () => {
+  asyncLocalStorage.run({ testName: args[0] }, () => {
     return t.test(...args)
   })
 })
 export function getCurrentTestName() {
-  const store = asyncLocalStorage.getStore()
-  return store?.get('testName')
+  return asyncLocalStorage.getStore().testName
 }
 
 export const before = t.mock.fn((...args) => {
-  asyncLocalStorage.run(new Map([['hook', 'before']]), () => {
+  asyncLocalStorage.run({ hook: 'before' }, () => {
     return t.before(...args)
   })
 })
 
 export const beforeEach = t.mock.fn((...args) => {
-  asyncLocalStorage.run(new Map([['hook', 'beforeEach']]), () => {
+  asyncLocalStorage.run({ hook: 'beforeEach' }, () => {
     return t.beforeEach(...args)
   })
 })
 
 export const after = t.mock.fn((...args) => {
-  asyncLocalStorage.run(new Map([['hook', 'after']]), () => {
+  asyncLocalStorage.run({ hook: 'after' }, () => {
     return t.after(...args)
   })
 })
 
 export const afterEach = t.mock.fn((...args) => {
-  asyncLocalStorage.run(new Map([['hook', 'afterEach']]), () => {
+  asyncLocalStorage.run({ hook: 'afterEach' }, () => {
     return t.afterEach(...args)
   })
 })
 
 export function getHook() {
-  const store = asyncLocalStorage.getStore()
-  return store?.get('hook') 
+  return asyncLocalStorage.getStore().hook
 }
 
 export const only = t.mock.fn(t.only)
