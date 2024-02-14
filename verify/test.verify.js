@@ -10,7 +10,7 @@ export const test = t.mock.fn((...args) => {
 })
 export function getCurrentTestName() {
   const store = asyncLocalStorage.getStore()
-  return store ? store.get('testName') : undefined
+  return store?.get('testName')
 }
 
 export const before = t.mock.fn((...args) => {
