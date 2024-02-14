@@ -1,6 +1,6 @@
 import path from 'path'
 
-async function resolve(url, context, defaultResolve) {
+export async function resolve(url, context, defaultResolve) {
   // To avoid circular dependencies
   // We suppose that all the verifiers include "verify" in the name
   if (
@@ -29,4 +29,3 @@ async function resolve(url, context, defaultResolve) {
   return defaultResolve(url, context, defaultResolve)
 }
 
-export { resolve }
