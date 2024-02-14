@@ -529,13 +529,26 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 # A10 Watch
 
+<div class="dense">
+
+- Running an entire test suite after each change can be frustrating.
+- The test runner offers a **watch mode** to address this.
+- In watch mode, the test runner will watch for changes to test files and their dependencies.
+- When a change is detected, the test runner will rerun the tests affected by the change
+- The test runner will continue to run until the process is terminated.
+- In order to start the test runner in watch mode you can use the `--watch` flag.
+
+</div>
+
 ---
 
 # A10 The problem
 
----
+- Open `test/index.test.js`.
 
-# A10 Solution 💡
+- Run in the terminal `node --test --watch`.
+
+- Watch test being executed while editing the file.
 
 ---
 
