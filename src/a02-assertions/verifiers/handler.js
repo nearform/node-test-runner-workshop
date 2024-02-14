@@ -24,9 +24,51 @@ process.on('exit', () => {
     {
       condition:
         typeof assertCalls.find(
+          a => a.testName === 'sum' && a.method === 'ok'
+        ) === 'undefined',
+      message: 'You need to call "ok" inside the "sum" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
+          a => a.testName === 'sum' && a.method === 'doesNotThrow'
+        ) === 'undefined',
+      message: 'You need to call "doesNotThrow" inside the "sum" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
+          a => a.testName === 'sum' && a.method === 'throws'
+        ) === 'undefined',
+      message: 'You need to call "throws" inside the "sum" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
           a => a.testName === 'sumAsync' && a.method === 'deepStrictEqual'
         ) === 'undefined',
       message: 'You need to call "deepStrictEqual" inside the "sumAsync" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
+          a => a.testName === 'sumAsync' && a.method === 'ok'
+        ) === 'undefined',
+      message: 'You need to call "ok" inside the "sumAsync" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
+          a => a.testName === 'sumAsync' && a.method === 'doesNotReject'
+        ) === 'undefined',
+      message: 'You need to call "doesNotReject" inside the "sumAsync" test'
+    },
+    {
+      condition:
+        typeof assertCalls.find(
+          a => a.testName === 'sumAsync' && a.method === 'rejects'
+        ) === 'undefined',
+      message: 'You need to call "rejects" inside the "sumAsync" test'
     },
     {
       condition: sum.mock.calls.length < 1,
