@@ -68,6 +68,22 @@ export const mock = new Proxy(originalMock, {
       }
     }
 
+    if (prop === 'timers') {
+      const timers = target[prop]
+      return new Proxy(timers, {
+        get(timersTarget, timersProp) {
+          const originalMethod = timersTarget[timersProp]
+          if (typeof originalMethod === 'function') {
+            return (...args) => {
+              mockCalls.push('timers.' + timersProp)
+              return originalMethod.apply(timersTarget, args)
+            }
+          }
+          return originalMethod
+        }
+      })
+    }
+
     return originalMethod
   }
 })
