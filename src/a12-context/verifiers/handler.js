@@ -1,4 +1,4 @@
-import { test } from '../../../verify/test.verify.js'
+import { test, describe } from '../../../verify/test.verify.js'
 
 await import('../test/index.test.js')
 
@@ -8,8 +8,13 @@ process.on('exit', () => {
 
   const expectations = [
     {
-      condition: test.mock.calls.length !== 2,
-      message: 'You need to create two top-level tests'
+      condition: test.mock.calls.length !== 6,
+      message: 'You need to all the tests'
+    },
+    {
+      condition: describe.mock.calls.length !== 2,
+      message:
+        'You need to use "describe" to create the test suites for the average and sum function'
     }
   ]
 

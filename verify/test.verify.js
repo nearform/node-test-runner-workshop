@@ -43,6 +43,7 @@ export function getHook() {
 export const only = t.mock.fn(t.only)
 export const skip = t.mock.fn(t.skip)
 export const todo = t.mock.fn(t.todo)
+export const describe = t.mock.fn(t.describe)
 
 export const mockCalls = []
 export const mock = new Proxy(t.mock, {
