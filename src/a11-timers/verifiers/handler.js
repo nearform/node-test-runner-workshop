@@ -1,5 +1,6 @@
-import { test } from '../../../verify/test.verify.js'
+import { delayedHello } from './index.verify.js'
 import { mockCalls } from '../../../verify/test.verify.js'
+import { assertCalls } from '../../../verify/assert.verify.js'
 
 await import('../test/index.test.js')
 
@@ -19,6 +20,16 @@ process.on('exit', () => {
     {
       condition: !mockCalls.includes('timers.reset'),
       message: 'You need to call "timers.reset" at least once'
+    },
+    {
+      condition: delayedHello.mock.calls.length === 0,
+      message: 'You need to call "delayedHello" at least once'
+    },
+    {
+      condition:
+        typeof assertCalls.find(a => a.method === 'strictEqual') ===
+        'undefined',
+      message: 'You need to call "strictEqual" inside the test'
     }
   ]
 
