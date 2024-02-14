@@ -38,6 +38,6 @@
   },
   "dependencies": {
     "@slidev/cli": "^0.47.5",
-    "slidev-theme-nearform": "^1.5.7"
+    "slidev-theme-nearform": "^2.0.0"
   }
 }
