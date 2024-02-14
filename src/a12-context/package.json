@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "node --test",
-    "solution": "node --test ./test/solution.test.js"
+    "solution": "node --test ./test/solution.test.js",
+    "verify": "node  --test --loader=./verifiers/loader.js ./verifiers/handler.js"
   },
   "keywords": [],
   "author": "",

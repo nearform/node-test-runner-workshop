@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node --test ./test/index.test.js",
-    "verify": "node  --test --loader=./verifiers/a05-keywords.js ./verifiers/handler.js",
+    "verify": "node  --test --loader=./verifiers/loader.js ./verifiers/handler.js",
     "solution": "node --test --test-only ./test/solution.test.js"
   },
   "keywords": [],

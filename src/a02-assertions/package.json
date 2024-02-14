@@ -9,7 +9,7 @@
   },
   "scripts": {
     "test": "node --test",
-    "verify": "node  --test --loader=./verifiers/a02-loader.js ./verifiers/handler.js"
+    "verify": "node  --test --loader=./verifiers/loader.js ./verifiers/handler.js"
   },
   "keywords": [],
   "author": "",
