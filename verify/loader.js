@@ -28,4 +28,3 @@ export async function resolve(url, context, defaultResolve) {
   // For all other modules, use the default loader
   return defaultResolve(url, context, defaultResolve)
 }
-
