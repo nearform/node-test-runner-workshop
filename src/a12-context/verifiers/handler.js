@@ -1,6 +1,4 @@
 import { test } from '../../../verify/test.verify.js'
-import { assertCalls } from '../../../verify/assert.verify.js'
-import { sum, sumAsync } from './index.verify.js'
 
 await import('../test/index.test.js')
 
@@ -8,13 +6,10 @@ await import('../test/index.test.js')
 process.on('exit', () => {
   console.log('Validating the test completion...')
 
-  console.log(test.mock.calls.length)
-
   const expectations = [
     {
-      condition: test.mock.calls.length < 8,
-      message:
-        'You need to create a test for both the sum and sumAsync functions'
+      condition: test.mock.calls.length !== 2,
+      message: 'You need to create two top-level tests'
     }
   ]
 
