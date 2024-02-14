@@ -29,4 +29,3 @@ async function resolve(url, context, defaultResolve) {
   return defaultResolve(url, context, defaultResolve)
 }
 
-export { resolve }
