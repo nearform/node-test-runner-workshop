@@ -39,7 +39,7 @@ export const afterEach = t.mock.fn((...args) => {
 
 export function getHook() {
   const store = asyncLocalStorage.getStore()
-  return store ? store.get('hook') : undefined
+  return store?.get('hook') 
 }
 
 export const only = t.mock.fn(t.only)
