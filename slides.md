@@ -474,13 +474,48 @@ Run `npm run test` to test your solution
 
 # A07 Reporter
 
+<div class="dense">
+
+- Reporters are tools used with test runners to format and present test execution results.
+- They transform raw test output into readable and structured formats for easier interpretation.
+- Common output formats include text, HTML, and JSON.
+- Helps developers quickly **identify test outcomes**, including successes and failures.
+- The Node.js test runner offers 4 default reporters: `spec`, `dot`, `tap`, `junit`
+</div>
+
 ---
 
 # A07 The problem
 
+- Test the default reporters by running in the terminal `node --test --test-reporter=` for each of them.
+- Let's create our custom reporter.
+- Open the file `test/reporter/index.reporter.js`.
+- Return 🐛 on failure and 🍾 on pass.
+- Run in the terminal `node --test --test-reporter=./test/reporter/index.reporter.js` to check the output.
+
 ---
 
 # A07 Solution 💡
+
+```javascript
+const success = '🍾'
+const fail = '🐛'
+
+export default async function* reporter(source) {
+  for await (const event of source) {
+    switch (event.type) {
+      case 'test:pass':
+        yield success
+        break
+      case 'test:fail':
+        yield fail
+        break
+      default:
+        break
+    }
+  }
+}
+```
 
 ---
 
