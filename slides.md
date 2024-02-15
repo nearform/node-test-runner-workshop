@@ -79,14 +79,6 @@ Choosing the right test runner involves considering the programming language, pr
 
 ---
 
-# A brief introduction
-
----
-
-# Features
-
----
-
 # Workshop setup
 
 - This workshop will introduce to the Node.js test runner with a series of exercises
