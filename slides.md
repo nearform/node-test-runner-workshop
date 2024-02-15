@@ -552,13 +552,57 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 # A09 Coverage
 
+- Test coverage quantifies the percentage of the source code that has been tested, helping developers identify untested parts of a codebase.
+- There are multiple types of **Test Coverage**: Statement Coverage, Function Coverage, Condition Coverage, Line Coverage
+
 ---
 
 # A09 The problem
 
+- Run in the terminal `node --test --experimental-test-coverage`.
+- Watch the coverage not being 100%.
+- Make converage 100%.
+
 ---
 
 # A09 Solution 💡
+
+```javascript
+test('sum', () => {
+  assert.deepStrictEqual(sum([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
+  assert.deepStrictEqual(sum([]), 0, 'sum of empty array is 0')
+  assert.throws(
+    () => sum('abc'),
+    { message: 'Input must be an array of numbers' },
+    'throws error for non-array input in sum'
+  )
+})
+
+test('product', () => {
+  assert.strictEqual(product([2, 3, 4]), 24, 'product of [2, 3, 4] is 24')
+  assert.throws(
+    () => product('abc'),
+    { message: 'Input must be an array of numbers' },
+    'throws error for non-array input in product'
+  )
+})
+```
+
+---
+
+# A09 Solution 💡 (2)
+
+```javascript
+test('average', () => {
+  assert.strictEqual(average([]), 0, 'average of empty array is 0')
+  assert.deepStrictEqual(average([1, 3]), 2, 'average of [1,3] is 2')
+  assert.throws(
+    () => average(null),
+    { message: 'Input must be an array of numbers' },
+    'throws error for non-array input in average'
+  )
+})
+```
 
 ---
 
