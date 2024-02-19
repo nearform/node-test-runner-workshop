@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "node --test"
+    "test": "node --test",
+    "verify": "node  --test NODE_NO_WARNINGS=1 --loader=../../verify/loader.js ./verifiers/handler.js"
   },
   "keywords": [],
   "author": "",
