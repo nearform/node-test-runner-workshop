@@ -8,14 +8,14 @@ test('sum', () => {
 })
 
 test('product', () => {
-  assert.strictEqual(product([2, 3, 4]), 24, 'product of [2, 3, 4] is 24')
+  assert.strictEqual(product([2, 3, 4]), 24)
   assert.throws(() => product('abc'), {
     message: 'Input must be an array of numbers'
   })
 })
 
 test('average', () => {
-  assert.strictEqual(average([]), 0, 'average of empty array is 0')
+  assert.strictEqual(average([]), 0)
   assert.throws(() => average(null), {
     message: 'Input must be an array of numbers'
   })

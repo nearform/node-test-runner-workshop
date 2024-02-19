@@ -12,7 +12,7 @@ import { sum, sumAsync } from '../src/index.js'
 // assert.doesNotMatch
 
 test('sum', () => {
-  assert.deepStrictEqual(sum([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
+  assert.deepStrictEqual(sum([1, 2, 3]), 6)
   // "typeof sum return is number"
   // "empty array is valid"
   // "sum of empty array is 0"
@@ -20,7 +20,7 @@ test('sum', () => {
 })
 
 test('sumAsync', async () => {
-  assert.deepStrictEqual(await sumAsync([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
+  assert.deepStrictEqual(await sumAsync([1, 2, 3]), 6)
   // "typeof sum return is number"
   // "empty array is valid"
   // "sum of empty array is 0"
