@@ -749,8 +749,6 @@ test('average', () => {
 - The test runner will continue to run until the process is terminated.
 - In order to start the test runner in watch mode you can use the `--watch` flag.
 
-</div>
-
 ---
 
 # A13 The problem
