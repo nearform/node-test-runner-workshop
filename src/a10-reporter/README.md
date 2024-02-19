@@ -1,4 +1,4 @@
-# a07-reporter
+# a10-reporter
 
 - There are 4 default reporters: `spec`, `dot`, `tap`, `junit`
 

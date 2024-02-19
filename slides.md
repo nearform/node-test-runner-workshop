@@ -279,7 +279,76 @@ node --test --test-concurrency=10
 
 ---
 
-# A04 Hooks
+# A04 Context
+
+<div class="dense">
+
+- The `context` object is essential for managing test lifecycles, including setup and teardown processes.
+- It provides hooks (`before`, `beforeEach`, `after`, `afterEach`) for preparing and cleaning up before and after tests or a group of tests.
+- Enables control over test execution through methods like `skip` (to bypass tests), `todo` (to mark tests as pending), and `runOnly` (to execute only specified tests).
+- Offers a `diagnostic` method for logging debug information and a signal property for aborting tests programmatically.
+- Supports **hierarchical test structuring** with the test method, allowing for the creation of subtests that inherit the context of their parent test.
+- Facilitates grouping related tests by using `beforeEach` and `afterEach` hooks for shared setup and cleanup, ensuring a well-organized and maintainable test suite.
+
+</div>
+
+---
+
+# A04 The problem
+
+- In this exercise about context, we will focus on child tests (also known as subtests)
+- In the file `index.test.js` you will find multiple tests for the `sum` and the `average` functions
+- Group together all the subtests related to the same function using the `describe` function
+
+---
+
+# A04 Solution 💡
+
+```javascript
+// Grouping tests for `sum` function
+describe('sum function tests', () => {
+  test('Sum works correctly with valid input', () => {
+    assert.deepStrictEqual(sum([1, 2, 3]), 6)
+  })
+
+  test('Sum returns 0 in case of empty array', () => {
+    assert.deepStrictEqual(sum([]), 0)
+  })
+
+  test('Sum throws in case of bad input', () => {
+    assert.throws(() => sum('abc'), {
+      message: 'Input must be an array of numbers'
+    })
+  })
+})
+```
+
+---
+
+# A04 Solution 💡 (2)
+
+```javascript
+// Grouping tests for `average` function
+describe('average function tests', () => {
+  test('Average works correctly with valid input', () => {
+    assert.deepStrictEqual(average([1, 2, 3]), 2)
+  })
+
+  test('Average returns 0 in case of empty array', () => {
+    assert.deepStrictEqual(average([]), 0)
+  })
+
+  test('Average throws in case of bad input', () => {
+    assert.throws(() => average('abc'), {
+      message: 'Input must be an array of numbers'
+    })
+  })
+})
+```
+
+---
+
+# A05 Hooks
 
 <div class="dense">
 
@@ -293,7 +362,7 @@ They help in managing resources efficiently, such as database connections and us
 
 ---
 
-# A04 The problem
+# A05 The problem
 
 <div class="dense">
 
@@ -306,7 +375,7 @@ We want to change the `index.test.js` code to use the proper **lifecycle hooks**
 
 ---
 
-# A04 Solution 💡
+# A05 Solution 💡
 
 ```javascript
 let databaseConnection
@@ -331,7 +400,7 @@ afterEach(async () => {
 
 ---
 
-# A04 Solution 💡 (2)
+# A05 Solution 💡 (2)
 
 ```javascript
 // No need for database connection here
@@ -354,7 +423,7 @@ test('Authentication Module Tests', async () => {
 
 ---
 
-# A05 Keywords
+# A06 Keywords
 
 <div class="dense">
 
@@ -366,7 +435,7 @@ test('Authentication Module Tests', async () => {
 
 ---
 
-# A05 The problem
+# A06 The problem
 
 <div class="dense">
 
@@ -377,7 +446,7 @@ test('Authentication Module Tests', async () => {
 
 ---
 
-# A05 Solution 💡
+# A06 Solution 💡
 
 ```javascript
 // the function product is not ready yet will throw, so we skip
@@ -403,7 +472,7 @@ test('should run normally', () => {
 
 ---
 
-# A06 Mocks
+# A07 Mocks
 
 - **Mocking** is a powerful testing technique that involves creating a fake version of a function or module to track its usage and control its behavior during tests.
 - It's particularly useful for isolating test environments, monitoring how functions are used, and testing the interactions between different parts of an application without relying on external resources or complex setups.
@@ -411,7 +480,7 @@ test('should run normally', () => {
 
 ---
 
-# A06 The problem
+# A07 The problem
 
 <div class="dense">
 
@@ -424,7 +493,7 @@ test('should run normally', () => {
 
 ---
 
-# A06 Fixing it 🪄
+# A07 Fixing it 🪄
 
 - Utilize the `mock` function to create a **spy version** of the sum function. This allows you to monitor its calls during the test execution.
 - The mock function provides detailed insights into each invocation, such as the arguments used, the return value, and any errors thrown.
@@ -432,7 +501,7 @@ test('should run normally', () => {
 
 ---
 
-# A06 Solution 💡
+# A07 Solution 💡
 
 ```javascript
 afterEach(async () => {
@@ -457,7 +526,52 @@ Run `npm run test` to test your solution
 
 ---
 
-# A07 Reporter
+# A08 Timers
+
+<div class="dense">
+
+- Timers are crucial for testing **time-dependent functionality** in applications, such as debouncing, throttling, or any operation that relies on time delays.
+- Using real timers in tests can lead to unpredictable results and slow down the testing process, as tests have to wait for the actual time to pass.
+- The Node.js test runner offers a way to **mock timers**, enabling tests to simulate the passage of time instantly.
+- Developers can enable mocked versions of timers like `setTimeout` and `setInterval` that can be controlled programmatically.
+
+</div>
+
+---
+
+# A08 The problem
+
+- In the `test` folder, there is a `index.test.js` file
+- The function to test, contains a `setTimeout`
+- During testing, this can lead to slow and unpredictable tests
+- Apply [timers mocking](https://nodejs.org/api/test.html#timers) in the test file
+
+---
+
+# A08 Solution 💡
+
+```javascript
+test('delayedHello executes the callback after the specified delay', () => {
+  const fn = mock.fn()
+
+  mock.timers.enable({ apis: ['setTimeout'] })
+  delayedHello(fn, 5000)
+
+  // Initially, the callback has not been called
+  assert.strictEqual(fn.mock.calls.length, 0)
+  // Advance time by 5000 milliseconds
+  mock.timers.tick(5000)
+  // Now, the callback should have been called once
+  assert.strictEqual(fn.mock.calls.length, 1)
+  assert.strictEqual(fn.mock.calls[0][0], 'Hello, World!')
+
+  mock.timers.reset()
+})
+```
+
+---
+
+# A10 Reporter
 
 <div class="dense">
 
@@ -470,7 +584,7 @@ Run `npm run test` to test your solution
 
 ---
 
-# A07 The problem
+# A10 The problem
 
 - Test the default reporters by running in the terminal `node --test --test-reporter=` for each of them.
 - Let's create our custom reporter.
@@ -480,7 +594,7 @@ Run `npm run test` to test your solution
 
 ---
 
-# A07 Solution 💡
+# A10 Solution 💡
 
 ```javascript
 const success = '🍾'
@@ -504,7 +618,7 @@ export default async function* reporter(source) {
 
 ---
 
-# A08 Typescript
+# A11 Typescript
 
 <div class="dense">
 
@@ -518,14 +632,14 @@ export default async function* reporter(source) {
 
 ---
 
-# A08 The problem
+# A11 The problem
 
 - In the `test` folder, there is a `index.test.ts` file
 - Run the test with the test runner using tsx by leveraging the `import` flag
 
 ---
 
-# A08 Solution 💡
+# A11 Solution 💡
 
 ```bash
     node --import=tsx --test ./test/*.ts
@@ -535,14 +649,14 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 ---
 
-# A09 Coverage
+# A12 Coverage
 
 - Test coverage quantifies the percentage of the source code that has been tested, helping developers identify untested parts of a codebase.
 - There are multiple types of **Test Coverage**: Statement Coverage, Function Coverage, Condition Coverage, Line Coverage
 
 ---
 
-# A09 The problem
+# A12 The problem
 
 - Run in the terminal `node --test --experimental-test-coverage`.
 - Watch the coverage not being 100%.
@@ -550,7 +664,7 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 ---
 
-# A09 Solution 💡
+# A12 Solution 💡
 
 ```javascript
 test('sum', () => {
@@ -571,7 +685,7 @@ test('product', () => {
 
 ---
 
-# A09 Solution 💡 (2)
+# A12 Solution 💡 (2)
 
 ```javascript
 test('average', () => {
@@ -585,7 +699,7 @@ test('average', () => {
 
 ---
 
-# A10 Watch
+# A13 Watch
 
 <div class="dense">
 
@@ -600,127 +714,13 @@ test('average', () => {
 
 ---
 
-# A10 The problem
+# A13 The problem
 
 - Open `test/index.test.js`.
 
 - Run in the terminal `node --test --watch`.
 
 - Watch test being executed while editing the file.
-
----
-
-# A11 Timers
-
-<div class="dense">
-
-- Timers are crucial for testing **time-dependent functionality** in applications, such as debouncing, throttling, or any operation that relies on time delays.
-- Using real timers in tests can lead to unpredictable results and slow down the testing process, as tests have to wait for the actual time to pass.
-- The Node.js test runner offers a way to **mock timers**, enabling tests to simulate the passage of time instantly.
-- Developers can enable mocked versions of timers like `setTimeout` and `setInterval` that can be controlled programmatically.
-
-</div>
-
----
-
-# A11 The problem
-
-- In the `test` folder, there is a `index.test.js` file
-- The function to test, contains a `setTimeout`
-- During testing, this can lead to slow and unpredictable tests
-- Apply [timers mocking](https://nodejs.org/api/test.html#timers) in the test file
-
----
-
-# A11 Solution 💡
-
-```javascript
-test('delayedHello executes the callback after the specified delay', () => {
-  const fn = mock.fn()
-
-  mock.timers.enable({ apis: ['setTimeout'] })
-  delayedHello(fn, 5000)
-
-  // Initially, the callback has not been called
-  assert.strictEqual(fn.mock.calls.length, 0)
-  // Advance time by 5000 milliseconds
-  mock.timers.tick(5000)
-  // Now, the callback should have been called once
-  assert.strictEqual(fn.mock.calls.length, 1)
-  assert.strictEqual(fn.mock.calls[0][0], 'Hello, World!')
-
-  mock.timers.reset()
-})
-```
-
----
-
-# A12 Context
-
-<div class="dense">
-
-- The `context` object is essential for managing test lifecycles, including setup and teardown processes.
-- It provides hooks (`before`, `beforeEach`, `after`, `afterEach`) for preparing and cleaning up before and after tests or a group of tests.
-- Enables control over test execution through methods like `skip` (to bypass tests), `todo` (to mark tests as pending), and `runOnly` (to execute only specified tests).
-- Offers a `diagnostic` method for logging debug information and a signal property for aborting tests programmatically.
-- Supports **hierarchical test structuring** with the test method, allowing for the creation of subtests that inherit the context of their parent test.
-- Facilitates grouping related tests by using `beforeEach` and `afterEach` hooks for shared setup and cleanup, ensuring a well-organized and maintainable test suite.
-
-</div>
-
----
-
-# A12 The problem
-
-- In this exercise about context, we will focus on child tests (also known as subtests)
-- In the file `index.test.js` you will find multiple tests for the `sum` and the `average` functions
-- Group together all the subtests related to the same function using the `describe` function
-
----
-
-# A12 Solution 💡
-
-```javascript
-// Grouping tests for `sum` function
-describe('sum function tests', () => {
-  test('Sum works correctly with valid input', () => {
-    assert.deepStrictEqual(sum([1, 2, 3]), 6)
-  })
-
-  test('Sum returns 0 in case of empty array', () => {
-    assert.deepStrictEqual(sum([]), 0)
-  })
-
-  test('Sum throws in case of bad input', () => {
-    assert.throws(() => sum('abc'), {
-      message: 'Input must be an array of numbers'
-    })
-  })
-})
-```
-
----
-
-# A12 Solution 💡 (2)
-
-```javascript
-// Grouping tests for `average` function
-describe('average function tests', () => {
-  test('Average works correctly with valid input', () => {
-    assert.deepStrictEqual(average([1, 2, 3]), 2)
-  })
-
-  test('Average returns 0 in case of empty array', () => {
-    assert.deepStrictEqual(average([]), 0)
-  })
-
-  test('Average throws in case of bad input', () => {
-    assert.throws(() => average('abc'), {
-      message: 'Input must be an array of numbers'
-    })
-  })
-})
-```
 
 ---
 

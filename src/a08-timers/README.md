@@ -1,4 +1,4 @@
-# a11-timers
+# a08-timers
 
 - Open the file `test/index.test.js`.
 

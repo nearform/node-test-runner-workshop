@@ -1,12 +1,13 @@
 {
-  "name": "a10-watch",
+  "name": "a04-context",
   "version": "1.0.0",
   "description": "",
   "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "node --test",
-    "solution": "node --test --watch"
+    "solution": "node --test ./test/solution.test.js",
+    "verify": "NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js"
   },
   "keywords": [],
   "author": "",
