@@ -1,4 +1,4 @@
-# a05-keywords
+# a06-keywords
 
 - Open the file `src/index.js`.
 

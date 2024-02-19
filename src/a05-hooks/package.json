@@ -1,16 +1,16 @@
 {
-  "name": "a06-mocks",
+  "name": "a05-hooks",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "directories": {
     "test": "test"
   },
   "scripts": {
     "test": "node --test ./test/index.test.js",
     "verify": "NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js",
-    "solution": "node --test --test-only ./test/solution.test.js"
+    "solution": "node --test ./test/solution.test.js"
   },
   "keywords": [],
   "author": "",

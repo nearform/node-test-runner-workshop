@@ -1,5 +1,5 @@
 {
-  "name": "a09-coverage",
+  "name": "a07-mocks",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -9,7 +9,8 @@
   },
   "scripts": {
     "test": "node --test ./test/index.test.js",
-    "solution": "node --test --experimental-test-coverage  ./test/solution.test.js"
+    "verify": "NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js",
+    "solution": "node --test --test-only ./test/solution.test.js"
   },
   "keywords": [],
   "author": "",

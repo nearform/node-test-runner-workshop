@@ -1,4 +1,4 @@
-# a06-mocks
+# a07-mocks
 
 - Open the file `src/index.js`.
 
