@@ -561,22 +561,18 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 ```javascript
 test('sum', () => {
-  assert.deepStrictEqual(sum([1, 2, 3]), 6, 'sum of [1, 2, 3] is 6')
-  assert.deepStrictEqual(sum([]), 0, 'sum of empty array is 0')
-  assert.throws(
-    () => sum('abc'),
-    { message: 'Input must be an array of numbers' },
-    'throws error for non-array input in sum'
-  )
+  assert.deepStrictEqual(sum([1, 2, 3]), 6)
+  assert.deepStrictEqual(sum([]), 0)
+  assert.throws(() => sum('abc'), {
+    message: 'Input must be an array of numbers'
+  })
 })
 
 test('product', () => {
-  assert.strictEqual(product([2, 3, 4]), 24, 'product of [2, 3, 4] is 24')
-  assert.throws(
-    () => product('abc'),
-    { message: 'Input must be an array of numbers' },
-    'throws error for non-array input in product'
-  )
+  assert.strictEqual(product([2, 3, 4]), 24)
+  assert.throws(() => product('abc'), {
+    message: 'Input must be an array of numbers'
+  })
 })
 ```
 
@@ -586,13 +582,11 @@ test('product', () => {
 
 ```javascript
 test('average', () => {
-  assert.strictEqual(average([]), 0, 'average of empty array is 0')
-  assert.deepStrictEqual(average([1, 3]), 2, 'average of [1,3] is 2')
-  assert.throws(
-    () => average(null),
-    { message: 'Input must be an array of numbers' },
-    'throws error for non-array input in average'
-  )
+  assert.strictEqual(average([]), 0)
+  assert.deepStrictEqual(average([1, 3]), 2)
+  assert.throws(() => average(null), {
+    message: 'Input must be an array of numbers'
+  })
 })
 ```
 
