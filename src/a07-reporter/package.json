@@ -13,7 +13,8 @@
     "test:dot": "node --test --test-reporter=dot",
     "test:junit": "node --test --test-reporter=junit",
     "test": "node --test --test-reporter=./test/reporter/index.reporter.js",
-    "solution": "node --test --test-reporter=./test/reporter/solution.reporter.js"
+    "solution": "node --test --test-reporter=./test/reporter/solution.reporter.js",
+    "verify": "node --test ./verifiers/*.spec.js"
   },
   "keywords": [],
   "author": "",

@@ -79,14 +79,6 @@ Choosing the right test runner involves considering the programming language, pr
 
 ---
 
-# A brief introduction
-
----
-
-# Features
-
----
-
 # Workshop setup
 
 - This workshop will introduce to the Node.js test runner with a series of exercises
@@ -467,13 +459,48 @@ Run `npm run test` to test your solution
 
 # A07 Reporter
 
+<div class="dense">
+
+- Reporters are tools used with test runners to format and present test execution results.
+- They transform raw test output into readable and structured formats for easier interpretation.
+- Common output formats include text, HTML, and JSON.
+- Helps developers quickly **identify test outcomes**, including successes and failures.
+- The Node.js test runner offers 4 default reporters: `spec`, `dot`, `tap`, `junit`
+</div>
+
 ---
 
 # A07 The problem
 
+- Test the default reporters by running in the terminal `node --test --test-reporter=` for each of them.
+- Let's create our custom reporter.
+- Open the file `test/reporter/index.reporter.js`.
+- Return 🐛 on failure and 🍾 on pass.
+- Run in the terminal `node --test --test-reporter=./test/reporter/index.reporter.js` to check the output.
+
 ---
 
 # A07 Solution 💡
+
+```javascript
+const success = '🍾'
+const fail = '🐛'
+
+export default async function* reporter(source) {
+  for await (const event of source) {
+    switch (event.type) {
+      case 'test:pass':
+        yield success
+        break
+      case 'test:fail':
+        yield fail
+        break
+      default:
+        break
+    }
+  }
+}
+```
 
 ---
 
@@ -510,25 +537,76 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 # A09 Coverage
 
+- Test coverage quantifies the percentage of the source code that has been tested, helping developers identify untested parts of a codebase.
+- There are multiple types of **Test Coverage**: Statement Coverage, Function Coverage, Condition Coverage, Line Coverage
+
 ---
 
 # A09 The problem
+
+- Run in the terminal `node --test --experimental-test-coverage`.
+- Watch the coverage not being 100%.
+- Make converage 100%.
 
 ---
 
 # A09 Solution 💡
 
+```javascript
+test('sum', () => {
+  assert.deepStrictEqual(sum([1, 2, 3]), 6)
+  assert.deepStrictEqual(sum([]), 0)
+  assert.throws(() => sum('abc'), {
+    message: 'Input must be an array of numbers'
+  })
+})
+
+test('product', () => {
+  assert.strictEqual(product([2, 3, 4]), 24)
+  assert.throws(() => product('abc'), {
+    message: 'Input must be an array of numbers'
+  })
+})
+```
+
+---
+
+# A09 Solution 💡 (2)
+
+```javascript
+test('average', () => {
+  assert.strictEqual(average([]), 0)
+  assert.deepStrictEqual(average([1, 3]), 2)
+  assert.throws(() => average(null), {
+    message: 'Input must be an array of numbers'
+  })
+})
+```
+
 ---
 
 # A10 Watch
+
+<div class="dense">
+
+- Running an entire test suite after each change can be frustrating.
+- The test runner offers a **watch mode** to address this.
+- In watch mode, the test runner will watch for changes to test files and their dependencies.
+- When a change is detected, the test runner will rerun the tests affected by the change
+- The test runner will continue to run until the process is terminated.
+- In order to start the test runner in watch mode you can use the `--watch` flag.
+
+</div>
 
 ---
 
 # A10 The problem
 
----
+- Open `test/index.test.js`.
 
-# A10 Solution 💡
+- Run in the terminal `node --test --watch`.
+
+- Watch test being executed while editing the file.
 
 ---
 
