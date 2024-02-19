@@ -571,6 +571,45 @@ test('delayedHello executes the callback after the specified delay', () => {
 
 ---
 
+# A09 Dates
+
+- The **mock timers API** also allows the mocking of the `Date` object.
+- This is a useful feature for testing time-dependent functionality, or to simulate internal calendar functions such as `Date.now()`.
+- Dates and timers are dependent when mocked together. This means that if you have both the `Date` and `setTimeout` mocked, advancing the time will also advance the mocked date as they simulate a single internal clock.
+
+---
+
+# A09 The problem
+
+- Enable the mocking of the `Date` object.
+- Set the time to `2024-02-19T00:00:00Z` and verify that the time returned from the `getCurrentFormattedDate` is correct
+- Use `setTime` to change the time to `2025-12-25T00:00:00Z` and verify that the formatted time is still correct
+
+---
+
+# A09 Solution 💡
+
+```javascript
+test('getCurrentFormattedDate returns the correct format', () => {
+  // Mock Date to a specific timestamp
+  mock.timers.enable({
+    apis: ['Date'],
+    now: new Date('2024-02-19T00:00:00Z').getTime()
+  })
+
+  // Test the function with the mocked date
+  assert.strictEqual(getCurrentFormattedDate(), '2024-02-19')
+
+  // Advance time to another specific date
+  mock.timers.setTime(new Date('2025-12-25T00:00:00Z').getTime())
+
+  // Test the function again with the new mocked date
+  assert.strictEqual(getCurrentFormattedDate(), '2025-12-25')
+})
+```
+
+---
+
 # A10 Reporter
 
 <div class="dense">

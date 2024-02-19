@@ -1,0 +1,15 @@
+{
+  "name": "a13-dates",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --test",
+    "solution": "node --test ./test/solution.test.js",
+    "verify": "node  --test NODE_NO_WARNINGS=1 --loader=../../verify/loader.js ./verifiers/handler.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
