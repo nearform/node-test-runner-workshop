@@ -33,7 +33,7 @@ test('should authenticate a valid user', async () => {
     'testuser',
     'password123'
   )
-  assert.strictEqual(result, true, 'Authentication should succeed')
+  assert.strictEqual(result, true)
 })
 
 test('should reject invalid password', async () => {
@@ -42,11 +42,7 @@ test('should reject invalid password', async () => {
     'testuser',
     'wrongpassword'
   )
-  assert.strictEqual(
-    result,
-    false,
-    'Authentication should fail with incorrect password'
-  )
+  assert.strictEqual(result, false)
 })
 
 test('should reject non-existing user', async () => {
@@ -55,9 +51,5 @@ test('should reject non-existing user', async () => {
     'nonexistentuser',
     'password123'
   )
-  assert.strictEqual(
-    result,
-    false,
-    'Authentication should fail with non-existing user'
-  )
+  assert.strictEqual(result, false)
 })
