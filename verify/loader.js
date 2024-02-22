@@ -20,12 +20,16 @@ export async function resolve(url, context, defaultResolve) {
 
   if (Object.keys(modulesToPatch).includes(url)) {
     if (process.platform === 'win32') {
-      const __dirname = path.dirname(fileURLToPath(import.meta.url))
-      console.log('__dirname', __dirname)
-      const filePath = path.join(__dirname, modulesToPatch[url])
-      console.log('filePath', filePath)
+      let filePath
+      if (path.isAbsolute(modulesToPatch[url])) {
+        // Directly use the absolute path if provided
+        filePath = modulesToPatch[url]
+      } else {
+        // Otherwise, calculate the path relative to __dirname
+        const __dirname = path.dirname(fileURLToPath(import.meta.url))
+        filePath = path.join(__dirname, modulesToPatch[url])
+      }
       const fileUrl = pathToFileURL(filePath).href
-      console.log('fileUrl', fileUrl)
 
       return defaultResolve(fileUrl, context, defaultResolve)
     } else {
