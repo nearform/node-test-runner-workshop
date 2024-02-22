@@ -7,7 +7,7 @@
   "scripts": {
     "test": "node --test",
     "solution": "node --test ./test/solution.test.js",
-    "verify": " NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js"
+    "verify": "cross-env NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js"
   },
   "keywords": [],
   "author": "",
