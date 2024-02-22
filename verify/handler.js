@@ -1,4 +1,4 @@
-import { test } from './test.verify.js'
+import { test, describe } from './test.verify.js'
 import { assertCalls } from './assert.verify.js'
 
 export default function handler(expectations) {
@@ -7,7 +7,8 @@ export default function handler(expectations) {
       if (
         expectation.condition({
           test,
-          assertCalls
+          assertCalls,
+          describe
         })
       )
         throw new Error(expectation.message)
