@@ -1,4 +1,5 @@
 import path from 'path'
+import { fileURLToPath, pathToFileURL } from 'url'
 
 export async function resolve(url, context, defaultResolve) {
   // To avoid circular dependencies
@@ -18,11 +19,22 @@ export async function resolve(url, context, defaultResolve) {
   }
 
   if (Object.keys(modulesToPatch).includes(url)) {
-    return defaultResolve(
-      new URL(modulesToPatch[url], import.meta.url).href,
-      context,
-      defaultResolve
-    )
+    if (process.platform === 'win32') {
+      const __dirname = path.dirname(fileURLToPath(import.meta.url))
+      console.log('__dirname', __dirname)
+      const filePath = path.join(__dirname, modulesToPatch[url])
+      console.log('filePath', filePath)
+      const fileUrl = pathToFileURL(filePath).href
+      console.log('fileUrl', fileUrl)
+
+      return defaultResolve(fileUrl, context, defaultResolve)
+    } else {
+      return defaultResolve(
+        new URL(modulesToPatch[url], import.meta.url).href,
+        context,
+        defaultResolve
+      )
+    }
   }
 
   // For all other modules, use the default loader
