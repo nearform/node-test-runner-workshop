@@ -573,7 +573,7 @@ test('delayedHello executes the callback after the specified delay', () => {
 
 # A09 Dates
 
-- The **mock timers API** also allows the mocking of the `Date` object.
+- The **mock timers API** also allows mocking of the `Date` object.
 - This is a useful feature for testing time-dependent functionality, or to simulate internal calendar functions such as `Date.now()`.
 - Dates and timers are dependent when mocked together. This means that if you have both the `Date` and `setTimeout` mocked, advancing the time will also advance the mocked date as they simulate a single internal clock.
 
