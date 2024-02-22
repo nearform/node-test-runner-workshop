@@ -4,13 +4,17 @@
   "description": "Template to start a new repository on the hub",
   "main": "index.js",
   "type": "module",
+  "workspaces": [
+    "src/*"
+  ],
   "scripts": {
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 0",
     "prepare": "husky install",
     "build": "slidev build",
     "start": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "verify-solution": "npm run verify-solution --workspaces --if-present"
   },
   "repository": {
     "type": "git",
