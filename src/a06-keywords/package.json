@@ -10,6 +10,7 @@
   "scripts": {
     "test": "node --test ./test/index.test.js",
     "verify": "cross-env NODE_NO_WARNINGS=1 node --test --loader=../../verify/loader.js ./verifiers/handler.js",
+    "verify-solution": "cross-env USE_SOLUTION=true npm run verify",
     "solution": "node --test --test-only ./test/solution.test.js"
   },
   "keywords": [],

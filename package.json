@@ -1,28 +1,32 @@
 {
-  "name": "hub-template",
+  "name": "node-test-runner-workshop",
   "version": "1.0.0",
-  "description": "Template to start a new repository on the hub",
+  "description": "A workshop about the Node.js test runner",
   "main": "index.js",
   "type": "module",
+  "workspaces": [
+    "src/*"
+  ],
   "scripts": {
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 0",
     "prepare": "husky install",
     "build": "slidev build",
     "start": "slidev --open",
-    "export": "slidev export"
+    "export": "slidev export",
+    "verify-solution": "npm run verify-solution --workspaces --if-present"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/nearform/hub-template.git"
+    "url": "git+https://github.com/nearform/node-test-runner-workshop"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/nearform/hub-template/issues"
+    "url": "https://github.com/nearform/node-test-runner-workshop/issues"
   },
-  "homepage": "https://github.com/nearform/hub-template#readme",
+  "homepage": "https://github.com/nearform/node-test-runner-workshop#readme",
   "devDependencies": {
     "@commitlint/cli": "^19.2.0",
     "@commitlint/config-conventional": "^19.1.0",

@@ -1,5 +1,5 @@
 import handler from '../../../verify/handler.js'
-import '../test/index.test.js'
+import(`../test/${process.env.USE_SOLUTION ? 'solution' : 'index'}.test.js`)
 
 const expectations = [
   {
