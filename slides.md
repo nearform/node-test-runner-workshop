@@ -697,9 +697,9 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 # A12 The problem
 
-- Run in the terminal `node --test --experimental-test-coverage`.
+- Run in the terminal `node --test --experimental-test-coverage ./test/index.test.js`.
 - Watch the coverage not being 100%.
-- Make converage 100%.
+- Make coverage 100%.
 
 ---
 
@@ -760,10 +760,6 @@ test('average', () => {
 - Run in the terminal `node --test --watch`.
 
 - Watch test being executed while editing the file.
-
----
-
-# Other useful resources
 
 ---
 
