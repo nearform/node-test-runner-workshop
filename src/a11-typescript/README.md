@@ -1,9 +1,5 @@
 # a11-typescript
 
-- Run in the terminal `npm install`.
-
-- Watch `tsx` being installed.
-
 - Open `src/index.ts`, it's a typescript file.
 
 - Run in the terminal `node --test ./test/*.ts`.
