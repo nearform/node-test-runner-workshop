@@ -10,7 +10,7 @@
   "scripts": {
     "lint": "eslint .",
     "test": "echo \"Error: no test specified\" && exit 0",
-    "prepare": "husky install",
+    "prepare": "husky",
     "build": "slidev build",
     "start": "slidev --open",
     "export": "slidev export",
