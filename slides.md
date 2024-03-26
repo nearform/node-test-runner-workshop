@@ -40,7 +40,7 @@ Test runners can be part of a larger **test framework** or standalone tools.
 
 ---
 
-# Poplular examples
+# Popular examples
 
 <div class="dense">
 
