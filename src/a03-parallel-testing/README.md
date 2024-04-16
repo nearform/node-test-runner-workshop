@@ -2,9 +2,9 @@
 
 - Open the file `src/index.js`.
 
-- There are 2 function `heavyComputationSum`, `heavyComputationMultiply`.
+- There are 2 functions `heavyComputationSum` and `heavyComputationMultiply`.
 
-- These function take a long time to execute.
+- These functions take a long time to execute.
 
 - Run in the terminal `node --test --test-concurrency=1`.
 

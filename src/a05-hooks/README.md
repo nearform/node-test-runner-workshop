@@ -2,10 +2,10 @@
 
 - Open the file `test/index.test.js`.
 
-- There are 3 test using `databaseConnection` and `user`.
+- There are 3 tests using `databaseConnection` and `user`.
 
-- They are manually resetting these value for every test.
+- They are manually resetting these values for every test.
 
-- Use `before`, `after`, `afterAll`, `beforeAll` hooks to make code more readable.
+- Use `before`, `after`, `afterAll` and `beforeAll` hooks to make code more readable.
 
 - Run in the terminal `node --test`.
