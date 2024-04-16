@@ -12,6 +12,6 @@ Workshop based on the [Node.js Test Runner](https://nodejs.org/api/test.html)
 
 ## Slides
 
-Slides contain instructions for the workshop. You can read them at https://nearform.github.io/node-test-runner-workshop, or:
+The slides contain instructions for the workshop. You can read them at <https://nearform.github.io/node-test-runner-workshop>, or:
 
 `npm start` will open the slides in the browser

@@ -2,7 +2,7 @@
 
 - Open the file `src/index.js`.
 
-- There are 3 function `sum`, `product`.
+- There are 3 functions `sum` and `product`.
 
 - Notice the function `product` is still not implemented and will throw.
 

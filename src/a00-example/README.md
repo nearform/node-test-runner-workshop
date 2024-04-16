@@ -2,9 +2,9 @@
 
 - Open the file `src/index.js`.
 
-- There are 3 function `sum`, `average`, `product`.
+- There are 3 functions `sum`, `average` and `product`.
 
-- These function are going to be used in most of our exercises.
+- These functions are going to be used in most of our exercises.
 
 - Open the file `test/index.js`.
 

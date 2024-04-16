@@ -4,4 +4,4 @@
 
 - Run in the terminal `node --test --watch`.
 
-- Watch test being executed while editing the file.
+- Watch tests being executed while editing the file.

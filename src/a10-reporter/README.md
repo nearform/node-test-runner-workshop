@@ -1,6 +1,6 @@
 # a10-reporter
 
-- There are 4 default reporters: `spec`, `dot`, `tap`, `junit`
+- There are 4 default reporters: `spec`, `dot`, `tap` and `junit`
 
 - Run in the terminal `node --test --test-reporter=` for each of them.
 
