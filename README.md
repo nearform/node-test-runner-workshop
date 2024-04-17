@@ -4,7 +4,7 @@ Workshop based on the [Node.js Test Runner](https://nodejs.org/api/test.html)
 
 ## Requirements
 
-- Node LTS
+- Node >= 21
 
 ## Setup
 
