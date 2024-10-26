@@ -1,0 +1,17 @@
+{
+  "name": "a14-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test ./test/*.ts",
+    "solution": "node --experimental-strip-types --test ./test/*.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tsx": "^4.19.1"
+  }
+}
