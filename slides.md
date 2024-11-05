@@ -688,6 +688,38 @@ You can reference the [`--import` official documentation](https://nodejs.org/api
 
 ---
 
+# A11.b Typescript - Strip Types
+
+<div class="dense">
+
+- Node.js has **experimental support** for **stripping types** from Typescript code, allowing it to execute `.ts` files without needing an external compiler like `ts-node` or `tsx`.
+- The `--experimental-strip-types` flag enables this feature, removing Typescript types at runtime to run files directly with Node.
+- **Note:** This feature is only available starting from **Node.js v22.6.0** and remains **Experimental**, so it may be subject to change in future releases.
+
+</div>
+
+---
+
+# A11.b The problem
+
+- The file `src/index.ts` is a Typescript file.
+- Attempting to run tests in this file with `node --test ./test/*.ts` will fail, as Node cannot natively execute Typescript.
+- Use the `--experimental-strip-types` flag to enable Node.js to strip out the types and execute the Typescript tests.
+
+---
+
+# A11.b Solution 💡
+
+Run the following command in the terminal to enable Node to execute the `.ts` test file by stripping out types at runtime:
+
+```bash
+node --experimental-strip-types --test
+```
+
+You can learn more about this flag and how it works in the [official documentation](https://nodejs.org/api/cli.html#--experimental-strip-types).
+
+---
+
 # A12 Coverage
 
 - Test coverage quantifies the percentage of the source code that has been tested, helping developers identify untested parts of a codebase.
@@ -760,38 +792,6 @@ test('average', () => {
 - Run in the terminal `node --test --watch`.
 
 - Watch test being executed while editing the file.
-
----
-
-# A14 Typescript - Strip Types
-
-<div class="dense">
-
-- Node.js has **experimental support** for **stripping types** from Typescript code, allowing it to execute `.ts` files without needing an external compiler like `ts-node` or `tsx`.
-- The `--experimental-strip-types` flag enables this feature, removing Typescript types at runtime to run files directly with Node.
-- **Note:** This feature is only available starting from **Node.js v22.6.0** and remains **Experimental**, so it may be subject to change in future releases.
-
-</div>
-
----
-
-# A14 The problem
-
-- The file `src/index.ts` is a Typescript file.
-- Attempting to run tests in this file with `node --test ./test/*.ts` will fail, as Node cannot natively execute Typescript.
-- Use the `--experimental-strip-types` flag to enable Node.js to strip out the types and execute the Typescript tests.
-
----
-
-# A14 Solution 💡
-
-Run the following command in the terminal to enable Node to execute the `.ts` test file by stripping out types at runtime:
-
-```bash
-node --experimental-strip-types --test ./test/*.ts
-```
-
-You can learn more about this flag and how it works in the [official documentation](https://nodejs.org/api/cli.html#--experimental-strip-types).
 
 ---
 
