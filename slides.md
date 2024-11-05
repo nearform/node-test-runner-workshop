@@ -5,7 +5,7 @@ highlighter: shiki
 lineNumbers: false
 ---
 
-<img class=logo src="/images/logo.png">
+<img class="logo" src="/images/logo.png" alt="Logo">
 
 # Node.js Test Runner Workshop
 
@@ -14,6 +14,14 @@ lineNumbers: false
 <Copyright />
 
 </div>
+
+---
+
+# Quick Start
+
+Scan the QR code to access the repository
+
+<img class="qrcode" src="/images/qr.png" alt="QR Code" style="max-width: 350px; float: right;">
 
 ---
 
