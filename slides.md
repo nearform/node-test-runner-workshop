@@ -19,7 +19,9 @@ lineNumbers: false
 
 # Quick Start
 
-Scan the QR code to access the repository
+Scan the QR code to access the repository, or visit the following link:
+<br>
+https://github.com/nearform/node-test-runner-workshop
 
 <img class="qrcode" src="/images/qr.png" alt="QR Code" style="max-width: 350px; float: right;">
 
