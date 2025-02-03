@@ -29,7 +29,7 @@
   "homepage": "https://github.com/nearform/node-test-runner-workshop#readme",
   "devDependencies": {
     "@commitlint/cli": "^19.6.1",
-    "@commitlint/config-conventional": "^19.6.0",
+    "@commitlint/config-conventional": "^19.7.1",
     "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^10.0.1",
