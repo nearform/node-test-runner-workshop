@@ -43,6 +43,6 @@
   },
   "dependencies": {
     "@slidev/cli": "^52.16.0",
-    "slidev-theme-nearform": "^2.1.0"
+    "slidev-theme-nearform": "^3.0.0"
   }
 }
