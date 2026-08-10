@@ -42,7 +42,7 @@
     "*.{js,jsx}": "eslint --cache --fix"
   },
   "dependencies": {
-    "@slidev/cli": "^52.18.1",
+    "@slidev/cli": "^52.19.0",
     "slidev-theme-nearform": "^3.0.0"
   }
 }
