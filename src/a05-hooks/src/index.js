@@ -22,5 +22,5 @@ export async function deleteUser(connection, user) {
   if (!connection.connected) throw new Error('Database not connected')
   if (!user) throw new Error('Invalid user')
   // biome-ignore lint: reason
-  user = undefined
+  user = undefined // eslint-disable-line no-useless-assignment
 }
