@@ -46,5 +46,11 @@
   "dependencies": {
     "@slidev/cli": "^53.0.0",
     "slidev-theme-nearform": "^3.1.0"
+  },
+  "overrides": {
+    "argparse": "^2.0.1",
+    "dompurify": "^3.4.17",
+    "image-size": "^2.0.3",
+    "minimatch": "^11.0.1"
   }
 }
